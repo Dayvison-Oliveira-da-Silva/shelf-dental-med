@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Produto Shelf</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        .produto-card {
+            width: 200px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 20px;
+            position: relative;
+        }
+
+        .produto-card img {
+            height: 160px;
+            /* ou use apenas width: 100%; e remova o height fixo */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .produto-card h3 {
+            font-size: 16px;
+            margin: 10px 0 5px;
+        }
+
+        .produto-card small {
+            color: #888;
+        }
+
+        .stars {
+            margin: 8px 0;
+            color: #ccc;
+        }
+
+        .preco {
+            color: rgb(111, 0, 255);
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .botao-opcoes {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #09f;
+            color: #fff;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Painel lateral */
+        .painel-lateral {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+        }
+
+        .painel-lateral.ativo {
+            right: 0;
+        }
+
+        .painel-lateral h4 {
+            margin-top: 0;
+        }
+
+        .tamanhos button {
+            margin: 5px 10px 15px 0;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+
+        .quantidade {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .quantidade button {
+            padding: 5px 10px;
+            font-size: 18px;
+            border: none;
+            background: #eee;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .quantidade span {
+            margin: 0 10px;
+        }
+
+        .btn-adicionar {
+            background: #38c736;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .fechar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="produto-card">
+        <img src="" alt="Luva Medix">
+        <h3>Luva para Procedimento Latex sem Pó - Medix</h3>
+        <small>Embalagem com 100 unidades. Escolha o tamanho.</small>
+        <div class="stars">★★★★★</div>
+        <div class="preco">R$29,90</div>
+        <div><a class="botao-opcoes" onclick="abrirPainel()">Ver Opções</a></div>
+    </div>
+
+    <!-- Painel lateral -->
+    <div id="painel" class="painel-lateral">
+        <span class="fechar" onclick="fecharPainel()">✖</span>
+        <h4>Para adicionar ao carrinho:</h4>
+        <p><strong>Escolha o tamanho:</strong></p>
+        <div class="tamanhos">
+            <button>P</button>
+            <button>M</button>
+            <button>G</button>
+        </div>
+        <div class="quantidade">
+            <button onclick="alterarQtd(-1)">−</button>
+            <span id="qtd">1</span>
+            <button onclick="alterarQtd(1)">+</button>
+        </div>
+        <button class="btn-adicionar">Adicionar</button>
+    </div>
+
+    <script>
+        function abrirPainel() {
+            document.getElementById('painel').classList.add('ativo');
+        }
+
+        function fecharPainel() {
+            document.getElementById('painel').classList.remove('ativo');
+        }
+
+        function alterarQtd(delta) {
+            const qtdSpan = document.getElementById('qtd');
+            let qtd = parseInt(qtdSpan.textContent);
+            qtd = Math.max(1, qtd + delta);
+            qtdSpan.textContent = qtd;
+        }
+    </script>
+
+</body>
+
+</html>

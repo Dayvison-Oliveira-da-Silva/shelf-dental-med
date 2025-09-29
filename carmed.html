@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carmed - Shelf Dental Med</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .produto-card-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .produto-card {
+      width: 160px;
+      background-color: #09f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .produto-card-content {
+      background-color: white;
+      border-radius: 25px 25px 0 0;
+    }
+
+    .produto-card-text {
+      margin-top: 15px;
+      height: 75px;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .descricao {
+      margin-top: 15px;
+      width: 96%;
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .marca {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .produto-card-img {
+      display: flex;
+      height: 160px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .produto-card-img img {
+      height: 95%;
+      width: 95%;
+      border-radius: 5px;
+      object-fit: contain;
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
+
+    .produto-card-price {
+      height: 40px;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      padding-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #e91e63;
+    }
+
+    .quantidade {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 5px;
+    }
+
+    .quantidade button {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background-color: #e0e0e0;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .quantidade input {
+      width: 20px;
+      text-align: center;
+      border: none;
+      font-weight: bold;
+      background: transparent;
+    }
+
+
+    .produto-card-sold {
+      display: flex;
+      height: 30px;
+      width: 100%;
+      background-color: yellow;
+      border-radius: 0 0 10px 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .produto-card-sold button {
+      font-size: 12px;
+      font-weight: bold;
+      background-color: transparent;
+      color: black;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .produto-card-sold button:hover {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <ul class="produto-card-list">
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="124"></div>
+            <div class="marca" data-sku="124"></div>
+          </div>
+          <div class="produto-card-img" data-sku="124"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="124">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="124">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="80000"></div>
+            <div class="marca" data-sku="80000"></div>
+          </div>
+          <div class="produto-card-img" data-sku="80000"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="80000">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="80000">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="1201-P2"></div>
+            <div class="marca" data-sku="1201-P2"></div>
+          </div>
+          <div class="produto-card-img" data-sku="1201-P2"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="1201-P2">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="1201-P2">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="ECOMAX1"></div>
+            <div class="marca" data-sku="ECOMAX1"></div>
+          </div>
+          <div class="produto-card-img" data-sku="ECOMAX1"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="ECOMAX1">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="ECOMAX1">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="ECOMAX1"></div>
+            <div class="marca" data-sku="ECOMAX1"></div>
+          </div>
+          <div class="produto-card-img" data-sku="ECOMAX1"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="ECOMAX1">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="ECOMAX1">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+      <li class="produto-card">
+        <div class="produto-card-content">
+          <div class="produto-card-text">
+            <div class="descricao" data-sku="ECOMAX1"></div>
+            <div class="marca" data-sku="ECOMAX1"></div>
+          </div>
+          <div class="produto-card-img" data-sku="ECOMAX1"><img src="" alt=""></div>
+          <div class="produto-card-price" data-sku="ECOMAX1">
+            <div class="price"></div>
+            <div class="desconto"></div>
+          </div>
+          <div class="quantidade" data-sku="ECOMAX1">
+            <button class="menos">-</button>
+            <input type="number" min="1" value="1" readonly>
+            <button class="mais">+</button>
+          </div>
+          <!--<div class="produto-card-size"></div>
+                <div class="produto-card-color"></div>-->
+          <div class="produto-card-sold">
+            <button>Adicionar ao carrinho</button>
+          </div>
+      </li>
+    </ul>
+
+  </main>
+  <script src="produto.js"></script>
+</body>
+
+</html>

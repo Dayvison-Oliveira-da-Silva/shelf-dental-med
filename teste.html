@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promoções Shelf Dental Med</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #2b2b2b;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .categoria {
+      margin-bottom: 40px;
+    }
+
+    .categoria h2 {
+      color: #09f;
+      margin-bottom: 5px;
+    }
+
+    .categoria p {
+      margin-top: 0;
+      color: #666;
+    }
+
+    .produtos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .produto {
+      width: 220px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: 0.3s ease;
+      text-align: center;
+    }
+
+    .produto img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .produto.sem-estoque {
+      opacity: 0.4;
+    }
+
+    .produto h4 {
+      margin: 10px 0 5px;
+      font-size: 15px;
+    }
+
+    .produto p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .produto button {
+      padding: 8px 12px;
+      border: none;
+      background: #09f;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .produto.sem-estoque button {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <main id="conteudo-promocoes"></main>
+
+  <script>
+    async function carregarCategorias() {
+      const res = await fetch('https://listas-shelf-dental-med-default-rtdb.firebaseio.com/.json');
+      const data = await res.json();
+      return Object.values(data);
+    }
+
+    async function carregarDadosProdutos(skus) {
+      const dados = {};
+      await Promise.all(skus.map(async (sku) => {
+        const res = await fetch(`https://produtos-shelf-dental-med-default-rtdb.firebaseio.com/produtos/${sku}.json`);
+        const json = await res.json();
+        if (json) dados[sku] = json;
+      }));
+      return dados;
+    }
+
+    function criarProdutoSimples(produto, dados) {
+      const div = document.createElement('div');
+      div.className = 'produto';
+      if ((dados.estoqueAtual || 0) <= 0) div.classList.add('sem-estoque');
+      div.innerHTML = `
+        <img src="${dados.anexos?.[0]?.url || 'https://via.placeholder.com/200x150?text=Sem+Imagem'}" alt="${produto.nome}">
+        <h4>${produto.nome}</h4>
+        ${dados.marca ? `<p><strong>${dados.marca}</strong></p>` : ''}
+        ${dados.obs ? `<p>${dados.obs}</p>` : ''}
+        <p><strong>Preço:</strong> R$ ${dados.preco || 'indisponível'}</p>
+        <p><strong>SKU:</strong> ${produto.SKU}</p>
+        <button ${dados.estoqueAtual <= 0 ? 'disabled' : ''}>${dados.estoqueAtual <= 0 ? 'Sem Estoque' : 'Adicionar ao Carrinho'}</button>
+      `;
+      return div;
+    }
+
+    function criarProdutoComOpcoes(opcoes, produtosData) {
+      const div = document.createElement('div');
+      div.className = 'produto';
+
+      // Usa dados da primeira opção como principal
+      const primeira = produtosData[opcoes[0].SKU] || {};
+      const imagem = primeira.anexos?.[0]?.url || 'https://via.placeholder.com/200x150?text=Sem+Imagem';
+      const nome = primeira.nome || opcoes[0].nome;
+
+      div.innerHTML = `
+        <img src="${imagem}" alt="${nome}">
+        <h4>${nome}</h4>
+        ${primeira.marca ? `<p><strong>${primeira.marca}</strong></p>` : ''}
+        ${primeira.obs ? `<p>${primeira.obs}</p>` : ''}
+        <p><strong>Várias opções disponíveis</strong></p>
+        <button>Ver Opções</button>
+      `;
+      return div;
+    }
+
+    function criarCategoriaHTML(categoria, produtosData) {
+      const container = document.createElement('div');
+      container.className = 'categoria';
+
+      const titulo = document.createElement('h2');
+      titulo.textContent = categoria.categoria;
+      container.appendChild(titulo);
+
+      const descricao = document.createElement('p');
+      descricao.textContent = categoria.descricao;
+      container.appendChild(descricao);
+
+      const listaProdutos = document.createElement('div');
+      listaProdutos.className = 'produtos';
+
+      if (categoria.produtos) {
+        categoria.produtos.forEach(prod => {
+          const dados = produtosData[prod.SKU] || {};
+          listaProdutos.appendChild(criarProdutoSimples(prod, dados));
+        });
+      }
+
+      if (categoria.opcoes) {
+        listaProdutos.appendChild(criarProdutoComOpcoes(categoria.opcoes, produtosData));
+      }
+
+      container.appendChild(listaProdutos);
+      return container;
+    }
+
+    async function renderizarPromocoes() {
+      const categorias = await carregarCategorias();
+      const skus = new Set();
+
+      categorias.forEach(cat => {
+        const lista = cat.produtos || cat.opcoes || [];
+        lista.forEach(p => skus.add(p.SKU));
+      });
+
+      const produtosData = await carregarDadosProdutos([...skus]);
+      const conteudo = document.getElementById('conteudo-promocoes');
+
+      categorias.forEach(categoria => {
+        const catHTML = criarCategoriaHTML(categoria, produtosData);
+        conteudo.appendChild(catHTML);
+      });
+    }
+
+    renderizarPromocoes();
+  </script>
+</body>
+
+</html>

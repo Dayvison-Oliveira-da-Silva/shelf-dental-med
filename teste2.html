@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro • Shelf Dental Med</title>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="shortcut icon" href="img/logo-nav.png" />
+    <style>
+        :root {
+            --brand: #09f;
+            --text: #2b2b2b;
+            --muted: #6c6c6c;
+            --border: #d7d7d7;
+            --bg: #fff;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .06);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            background: #f9f9f9;
+            color: var(--text)
+        }
+
+        /* ===== Container da página ===== */
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 18px
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 2px 12px
+        }
+
+        .title h1 {
+            font-size: 1.25rem;
+            margin: 0
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        /* ===== Formulário (namespaced) ===== */
+        form.cadastro {
+            display: grid;
+            gap: 14px
+        }
+
+        .cadastro .grid {
+            display: grid;
+            gap: 12px
+        }
+
+        .cadastro .row-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .cadastro .row-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        .cadastro .field {
+            display: grid;
+            gap: 6px
+        }
+
+        .cadastro label {
+            font-size: .95rem;
+            color: #4a4a4a
+        }
+
+        .cadastro input,
+        .cadastro select {
+            width: 100%;
+            max-width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            outline: 0;
+            font: inherit;
+            line-height: 1.25;
+            min-height: 44px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .cadastro input:focus,
+        .cadastro select:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(0, 153, 255, .15);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .btn-primary {
+            background: var(--brand);
+            color: #fff;
+            border: 0;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px)
+        }
+
+        .error {
+            color: #b00020;
+            font-size: .95rem
+        }
+
+        .hint {
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .hidden {
+            display: none
+        }
+
+        @media (min-width:640px) {
+            .page {
+                padding: 24px
+            }
+
+            .card {
+                padding: 22px
+            }
+
+            form.cadastro {
+                gap: 16px
+            }
+
+            .cadastro .grid {
+                gap: 14px
+            }
+
+            input,
+            select {
+                max-height: 46px;
+            }
+        }
+
+        @media (max-width:640px) {
+            .page {
+                padding: 12px
+            }
+
+            .card {
+                padding: 14px;
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, .05)
+            }
+
+            .cadastro .row-2,
+            .cadastro .row-3 {
+                grid-template-columns: 1fr
+            }
+
+            .cadastro input,
+            .cadastro select {
+                font-size: 16px
+            }
+
+            /* evita zoom no iOS */
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px
+            }
+
+            .btn-primary {
+                width: 100%;
+                padding: 14px
+            }
+
+            .hint {
+                font-size: .8rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <header class="header-mobile-universal">
+            <div class="top-banner-mobile-universal">
+                <a href="campanhas.html"><img src="img/banner-header1(mobile).gif" alt=""></a>
+            </div>
+            <div class="header-content-mobile-universal">
+                <!-- Botão de menu visível no mobile -->
+                <button class="btn-menu-mobile-universal" id="btnMenuMobile-universal" aria-label="Abrir menu">
+                    ☰
+                </button>
+                <div class="search-bar-universal" role="search">
+                    <input type="text" placeholder="Pesquisar Listas Acadêmicas..." aria-label="Pesquisar" />
+                    <button aria-label="Buscar">
+                        <svg class="user-icon-mobile-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-area-mobile-universal">
+                    <a class="user-link-mobile-universal" href="carrinho.html">
+                        <svg class="user-icon-mobile-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.16 14l-.94-2H19V7H6.42l-.94-2H2v2h2l3.6 7.59-1.35 2.44C5.16 17.37 5 17.91 5 18.5 5 19.33 5.67 20 6.5 20h12v-2h-11l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L21 9.24l-1.66-.88L17.1 14H7.16z" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- Menu lateral mobile -->
+                <div id="menuMobile-universal" class="menu-mobile-universal" hidden>
+                    <button class="close-menu-universal" id="closeMenuMobile-universal">×</button>
+
+                    <div class="menu-mobile-content-universal">
+                        <p class="title-universal">Acesse sua conta e aproveite benefícios exclusivos!</p>
+                        <!-- Área dinâmica: será renderizada conforme login/sessão -->
+                        <div id="mobileAccountArea" class="menu-buttons-universal"></div>
+
+
+                        <div class="categorias-universal">
+                            <h4>Categorias</h4>
+                            <ul>
+                                <li><a href="index.html">Página Inicial</a></li>
+                                <li><a href="listas.html">Listas Acadêmicas</a></li>
+                                <li><a href="promocoes.html">Promoções</a></li>
+                                <li><a href="campanhas.html">Campanhas</a></li>
+                                <li><a href="contatos.html">Fale Conosco</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="menuOverlay-universal" class="menu-overlay-universal" hidden></div>
+            </div>
+        </header>
+
+        <header class="header-topo-universal">
+            <div class="top-banner-universal"><a href="campanhas.html"><img src="img/banner-header.gif" alt=""></a>
+            </div>
+
+            <div class="header-content-universal">
+                <div class="logo-universal"><a href="index.html"><img src="img/logo.png" alt="Shelf Dental Med" /></a>
+                </div>
+
+                <div class="search-bar-universal" role="search">
+                    <input type="text" placeholder="Pesquisar Listas Acadêmicas..." aria-label="Pesquisar" />
+                    <button aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="user-area-universal">
+                    <!-- Botão + popovers -->
+                    <div class="user-login-universal">
+                        <button id="btnLogin-universal" class="user-link-universal" type="button" aria-expanded="false"
+                            aria-controls="loginPopover accountPopover">
+                            <svg class="user-icon-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4a3 3 0 110 6 3 3 0 010-6zm0 14.2c-2.5 0-4.8-1.1-6.4-2.9.1-2.1 4.3-3.2 6.4-3.2s6.3 1.1 6.4 3.2c-1.6 1.8-3.9 2.9-6.4 2.9z" />
+                            </svg>
+                            <span>Olá, visitante<br><strong>Faça seu login</strong></span>
+                        </button>
+
+                        <!-- Popover: Login -->
+                        <div id="loginPopover-universal" class="popover-universal" role="dialog-universal"
+                            aria-labelledby="loginTitle-universal" hidden>
+                            <div class="login-header-universal">
+                                <h2 id="loginTitle-universal">Faça seu login</h2>
+                                <button class="btn-close-universal" id="btnCloseLogin-universal"
+                                    aria-label="Fechar">×</button>
+                            </div>
+                            <p class="muted-universal">E aproveite ofertas exclusivas para você!</p>
+
+                            <form id="loginForm-universal" class="login-form-universal" novalidate>
+                                <div class="field-universal">
+                                    <label for="email-universal">E-mail ou CPF/CNPJ</label>
+                                    <input id="email-universal" name="email" type="text" inputmode="email"
+                                        autocomplete="username" required
+                                        placeholder="seu@email.com ou 000.000.000-00" />
+                                </div>
+                                <div class="field-universal">
+                                    <label for="senha">Senha</label>
+                                    <input id="senha-universal" name="senha" type="password"
+                                        autocomplete="current-password" required placeholder="••••••••" />
+                                </div>
+                                <div class="row-universal">
+                                    <label class="muted-universal"><input type="checkbox" id="togglePass-universal" />
+                                        Mostrar senha</label>
+                                    <a class="muted" href="/esqueci-minha-senha">Esqueceu a sua senha?</a>
+                                </div>
+                                <button class="btn-primary-universal" type="submit">Entrar</button>
+                                <div id="loginError-universal" class="error-universal" hidden></div>
+
+                                <div class="alt-universal">ou</div>
+                                <div class="btn-cadastrar-universal"><a class="btn-cadastrar-universal"
+                                        href="cadastro.html">Cadastre-se aqui</a>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <!-- Popover: Menu da conta -->
+                        <div id="accountPopover-universal" class="popover-universal" role="menu" hidden>
+                            <ul class="account-menu-universal">
+                                <li><a href="/minha-conta.html">Sua conta</a></li>
+                                <li><a href="/pedidos.html">Pedidos</a></li>
+                                <li><button type="button" id="btnLogout-universal" class="logout-universal">Sair da
+                                        conta</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a class="user-link-universal" href="#pontos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M17.94 6.06a1.5 1.5 0 0 1 0 2.12l-9.78 9.78a1.5 1.5 0 1 1-2.12-2.12l9.78-9.78a1.5 1.5 0 0 1 2.12 0zM7.5 5a2.5 2.5 0 1 0 0 5A2.5 2.5 0 0 0 7.5 5zm9 9a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5z" />
+                        </svg>
+
+                        <span>Shelf Points<br>Seu Score</span>
+                    </a>
+
+                    <a class="user-link-universal" href="carrinho.html">
+                        <svg class="user-icon-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.16 14l-.94-2H19V7H6.42l-.94-2H2v2h2l3.6 7.59-1.35 2.44C5.16 17.37 5 17.91 5 18.5 5 19.33 5.67 20 6.5 20h12v-2h-11l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L21 9.24l-1.66-.88L17.1 14H7.16z" />
+                        </svg>
+                        <span>Carrinho</span>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="menu-navegacao-universal">
+                <ul>
+                    <li><a href="index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-universal" viewBox="0 0 24 24"
+                                fill="currentColor" width="20" height="20">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                            </svg>
+
+                            Página Inicial</a>
+                    </li>
+                    <li><a href="listas.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M4 3h16c.55 0 1 .45 1 1v16c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1zm1 2v14h14V5H5zm2 3h10v2H7zm0 3h10v2H7zm0 3h10v2H7zm0 3h10v2H7z" />
+                            </svg>
+
+
+                            Listas Acadêmicas</a>
+                    </li>
+                    <li><a href="promocoes.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <text x="0" y="20" font-size="24" font-family="Arial, sans-serif"
+                                    font-weight="bold">$</text>
+                            </svg>
+
+
+
+                            Promoções</a></li>
+                    <li><a href="campanhas.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M19 6h-2V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H5c-1.1 0-1.99.9-1.99 2L3 17c0 1.1.89 2 1.99 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7 0h-4V4h4v2zm5 9H5V8h12v7z" />
+                            </svg>
+
+                            Campanhas</a></li>
+                    <li><a href="contatos.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 1C6.48 1 2 5.48 2 11v5c0 1.66 1.34 3 3 3h1v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-1v8h1c1.66 0 3-1.34 3-3v-5c0-5.52-4.48-10-10-10z" />
+                            </svg>
+
+                            Atendimento ao Cliente</a></li>
+                </ul>
+            </nav>
+        </header>
+        <script>
+            // ===== CONFIGURE AQUI =====
+            // Opção A: usando rewrite do Firebase Hosting
+            // const API_BASE = '/api';
+
+            // Opção B: chamando a Cloud Function diretamente (troque pelo seu endpoint)
+            const API_BASE = 'https://us-central1-cadastros-shelf-dental-med.cloudfunctions.net/rtdb';
+
+            // Se sua origem já está na whitelist do servidor (ex.: gruposhelf.com e localhost:5500),
+            // este header é opcional. Se precisar, mantenha:
+            const CHAVE_ACESSO = 'teste123';
+
+            // ===== Helpers =====
+            function onlyDigitsUniversal(s) { return String(s || '').replace(/\D+/g, ''); }
+
+            async function chamarDB(path, payload) {
+                const resp = await fetch(`${API_BASE}${path}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-chave-acesso': CHAVE_ACESSO // remova se sua origem já estiver permitida
+                    },
+                    body: JSON.stringify(payload || {})
+                });
+                let data = null;
+                try { data = await resp.json(); } catch { }
+                if (!resp.ok) {
+                    const msg = (data && (data.error || data.message)) || `HTTP ${resp.status}`;
+                    throw new Error(msg);
+                }
+                return data;
+            }
+
+            // ===== Config do front =====
+            const ACCOUNT_URL = '/minha-conta';
+            const ORDERS_URL = '/pedidos';
+            const SESSION_KEY = 'sdm_user';
+
+            // Elos
+            const btnLogin = document.getElementById('btnLogin-universal');
+            const loginPop = document.getElementById('loginPopover-universal');
+            const accPop = document.getElementById('accountPopover-universal');
+            const btnClose = document.getElementById('btnCloseLogin-universal');
+            const form = document.getElementById('loginForm-universal');
+            const errorBox = document.getElementById('loginError-universal');
+
+            // Sessão
+            const getUser = () => { try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; } };
+            const setUser = (u) => localStorage.setItem(SESSION_KEY, JSON.stringify(u));
+            const clearUser = () => localStorage.removeItem(SESSION_KEY);
+
+            // UI States
+            function firstName(fullName) {
+                return String(fullName || '')
+                    .trim()
+                    .split(/\s+/)[0] || 'Usuário';
+            }
+
+            function setLoggedInUI(user) {
+                btnLogin.querySelector('span').innerHTML =
+                    `Olá, <strong>${firstName(user.nome)}</strong><br>Minha conta`;
+                loginPop.hidden = true;
+                accPop.hidden = true;
+            }
+            function setLoggedOutUI() {
+                btnLogin.querySelector('span').innerHTML = `Olá, visitante<br><strong>Faça seu login</strong>`;
+                loginPop.hidden = true; accPop.hidden = true;
+            }
+            function renderMobileMenuBySession() {
+                const area = document.getElementById('mobileAccountArea');
+                if (!area) return;
+
+                const user = getUser();
+                if (user) {
+                    // Usuário logado: mostra "Sua conta / Pedidos / Sair"
+                    area.innerHTML = `
+        <div class="account-mobile-universal">
+          <p class="muted-universal">Olá, <strong>${firstName(user.nome)}</strong></p>
+          <ul class="account-menu-universal">
+            <li><a href="/minha-conta.html" id="mobileAccountLink">Sua conta</a></li>
+            <li><a href="/pedidos.html" id="mobileOrdersLink">Pedidos</a></li>
+            <li><button type="button" id="btnLogoutMobile-universal" class="logout-universal">Sair da conta</button></li>
+          </ul>
+        </div>
+      `;
+
+                    // Ações dos itens
+                    const logoutBtn = document.getElementById('btnLogoutMobile-universal');
+                    logoutBtn?.addEventListener('click', () => {
+                        clearUser();
+                        setLoggedOutUI();
+                        renderMobileMenuBySession();
+                        // fecha o menu lateral se estiver aberto
+                        try { closeMenu(); } catch (_) { }
+                    });
+
+                    const accountLink = document.getElementById('mobileAccountLink');
+                    const ordersLink = document.getElementById('mobileOrdersLink');
+
+                    accountLink?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = ACCOUNT_URL;
+                        try { closeMenu(); } catch (_) { }
+                    });
+                    ordersLink?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = ORDERS_URL;
+                        try { closeMenu(); } catch (_) { }
+                    });
+
+                } else {
+                    // Visitante: mostra "Entrar / Criar conta"
+                    area.innerHTML = `
+        <div class="menu-buttons-universal">
+          <button class="btn-primary-universal"><a href="login-mobile.html">Entrar</a></button>
+          <button class="btn-secondary-universal"><a href="cadastro.html">Criar conta</a></button>
+        </div>
+      `;
+                }
+            }
+            // Abertura/fechamento
+            function openLogin() { loginPop.hidden = false; accPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'true'); setTimeout(() => document.getElementById('email-universal').focus(), 0); }
+            function openAccount() { accPop.hidden = false; loginPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'true'); }
+            function closeAll() { loginPop.hidden = true; accPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'false'); }
+
+            // Clique do botão: decide qual abrir
+            btnLogin.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const user = getUser();
+                if (user) { accPop.hidden ? openAccount() : closeAll(); }
+                else { loginPop.hidden ? openLogin() : closeAll(); }
+            });
+            btnClose.addEventListener('click', closeAll);
+
+            // Click fora / ESC
+            document.addEventListener('click', (e) => {
+                if ((!loginPop.hidden || !accPop.hidden) &&
+                    !loginPop.contains(e.target) && !accPop.contains(e.target) &&
+                    e.target !== btnLogin && !btnLogin.contains(e.target)) {
+                    closeAll();
+                }
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+            // Mostrar/ocultar senha
+            document.addEventListener('change', (e) => {
+                if (e.target.id === 'togglePass-universal') {
+                    const input = document.getElementById('senha-universal');
+                    input.type = e.target.checked ? 'text' : 'password';
+                }
+            });
+
+            // Submit do login
+            form.addEventListener('submit', async (ev) => {
+                ev.preventDefault();
+                const rawId = form.email.value.trim(); // no momento, exigimos CPF
+                const senha = form.senha.value;
+
+                const cpf = onlyDigitsUniversal(rawId);
+                if (cpf.length !== 11) { showError('Use seu CPF (11 dígitos) para entrar.'); return; }
+                if (!senha) { showError('Informe a senha.'); return; }
+
+                try {
+                    const resp = await chamarDB('/entrar', { cpf, senha });
+                    const user = { nome: resp.nome || 'Usuário', cpf: resp.cpf };
+                    setUser(user);
+                    setLoggedInUI(user);
+
+                    // 🔹 ATUALIZA O MENU LATERAL DO MOBILE APÓS LOGIN
+                    renderMobileMenuBySession();
+
+                    closeAll();
+                    errorBox.hidden = true;
+                } catch (err) {
+                    showError(err.message || 'Credenciais inválidas.');
+                }
+            });
+
+            // Logout
+            document.getElementById('btnLogout-universal').addEventListener('click', () => {
+                clearUser();
+                setLoggedOutUI();
+                // 🔹 ATUALIZA O MENU LATERAL DO MOBILE APÓS LOGOUT
+                renderMobileMenuBySession();
+                closeAll();
+            });
+
+            function showError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
+
+            // Init
+            (function init() {
+                const u = getUser();
+                if (u) setLoggedInUI(u); else setLoggedOutUI();
+
+                // 🔹 ATUALIZA O MENU LATERAL DO MOBILE CONFORME A SESSÃO
+                renderMobileMenuBySession();
+
+                // Navegação rápida pelos itens do menu
+                accPop.addEventListener('click', (e) => {
+                    const a = e.target.closest('a');
+                    if (!a) return;
+                    closeAll();
+                    if (a.getAttribute('href') === '/minha-conta') window.location.href = ACCOUNT_URL;
+                    if (a.getAttribute('href') === '/pedidos') window.location.href = ORDERS_URL;
+                });
+            })();
+        </script>
+        <script>
+            // Mobile menu toggle
+            const btnMenuMobile = document.getElementById('btnMenuMobile-universal');
+            const menuMobile = document.getElementById('menuMobile-universal');
+            const closeMenuMobile = document.getElementById('closeMenuMobile-universal');
+            const menuOverlay = document.getElementById('menuOverlay-universal');
+
+            btnMenuMobile.addEventListener('click', () => {
+                menuMobile.removeAttribute('hidden');
+                menuMobile.setAttribute('aria-hidden', 'false');
+                menuOverlay.removeAttribute('hidden');
+            });
+
+            closeMenuMobile.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+
+            function closeMenu() {
+                menuMobile.setAttribute('aria-hidden', 'true');
+                menuOverlay.setAttribute('hidden', true);
+                setTimeout(() => {
+                    menuMobile.setAttribute('hidden', true);
+                }, 300); // aguarda animação
+            }
+        </script>
+    </div>
+    <main class="page" role="main">
+        <section class="card" aria-labelledby="cadastroTitle">
+            <div class="title">
+                <h1 id="cadastroTitle">Crie sua conta</h1>
+            </div>
+            <p class="muted">Preencha seus dados para concluir o cadastro.</p>
+
+            <form id="cadastroForm" class="cadastro" novalidate>
+                <div class="grid">
+                    <div class="field">
+                        <label for="nome">Nome completo</label>
+                        <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome" required />
+                    </div>
+                </div>
+
+                <div class="grid row-2">
+                    <div class="field">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" name="cpf" type="text" inputmode="numeric" maxlength="14"
+                            placeholder="000.000.000-00" required />
+                        <span class="hint">Somente números — formatação automática.</span>
+                    </div>
+                    <div class="field">
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone" name="telefone" type="text" inputmode="tel" autocomplete="tel-national"
+                            maxlength="15" placeholder="(00) 00000-0000" required />
+                        <span class="hint">Somente números — informe o DDD.</span>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="field">
+                        <label for="rua">Rua</label>
+                        <input id="rua" name="rua" type="text" autocomplete="address-line1" placeholder="Av./Rua"
+                            required />
+                    </div>
+                </div>
+
+                <div class="grid row-3">
+                    <div class="field">
+                        <label for="numero">Nº residência</label>
+                        <input id="numero" name="numero" type="text" inputmode="numeric" placeholder="123" required />
+                    </div>
+                    <div class="field">
+                        <label for="bairro">Bairro</label>
+                        <input id="bairro" name="bairro" type="text" required />
+                    </div>
+                    <div class="field">
+                        <label for="cep">CEP</label>
+                        <input id="cep" name="cep" type="text" inputmode="numeric" maxlength="9"
+                            autocomplete="postal-code" placeholder="00000-000" required />
+                    </div>
+                </div>
+
+                <div class="grid row-2">
+                    <div class="field">
+                        <label for="cidade">Cidade</label>
+                        <input id="cidade" name="cidade" type="text" autocomplete="address-level2" required />
+                    </div>
+                    <div class="field">
+                        <label for="estado">Estado (UF)</label>
+                        <select id="estado" name="estado" autocomplete="address-level1" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MG</option>
+                            <option>MS</option>
+                            <option>MT</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>PR</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>RS</option>
+                            <option>SC</option>
+                            <option>SE</option>
+                            <option>SP</option>
+                            <option>TO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid row-2">
+                    <div class="field">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="seu@email.com"
+                            required />
+                    </div>
+                    <div class="field">
+                        <label for="universidade">Universidade ou CRO</label>
+                        <select id="universidade" name="universidade" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="FAMETRO">FAMETRO</option>
+                            <option value="IAES">IAES</option>
+                            <option value="UNINORTE">UNINORTE</option>
+                            <option value="Nilton Lins">Nilton Lins</option>
+                            <option value="Outro">Outras Instituições</option>
+                            <option value="CRO">CRO</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="grid row-2">
+                    <div id="uniOutroWrap" class="field" style="display:none;">
+                        <div class="field">
+                            <label for="universidade_outro">Informe a universidade</label>
+                            <input id="universidade_outro" name="universidade_outro" type="text"
+                                placeholder="Nome da universidade" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="periodo">Período atual</label>
+                        <select id="periodo" name="periodo" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option>1º</option>
+                            <option>2º</option>
+                            <option>3º</option>
+                            <option>4º</option>
+                            <option>5º</option>
+                            <option>6º</option>
+                            <option>7º</option>
+                            <option>8º</option>
+                            <option>9º</option>
+                            <option>10º</option>
+                        </select>
+                    </div>
+                    <div id="cro" class="field" style="display:none;">
+                        <div class="field">
+                            <label for="numeracaoCro">Informe sua identicação do Conselho Regional</label>
+                            <input id="numeracaoCro" name="numeracaoCro" type="text"
+                                placeholder="[Sequência numérica]-[Categoria]-[UF]" />
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="senha">Crie uma senha</label>
+                    <input id="senha" name="senha" type="password" minlength="8" autocomplete="new-password"
+                        placeholder="Mínimo 8 caracteres" required />
+                    <span class="hint">Use letras maiúsculas, minúsculas e números.</span>
+                </div>
+                <div class="grid">
+                    <div class="field">
+                        <label for="confirmaSenha">Confirme a senha</label>
+                        <input id="confirmaSenha" name="confirmaSenha" type="password" minlength="8"
+                            autocomplete="new-password" required />
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-primary" type="submit">Criar conta</button>
+                    <span id="formError" class="error" aria-live="polite" hidden></span>
+                </div>
+            </form>
+        </section>
+    </main>
+
+   <script>
+  // ===== Máscaras rápidas =====
+  const onlyDigits = v => String(v || '').replace(/\D+/g, '');
+  function maskCPF(v) {
+    v = onlyDigits(v).slice(0, 11);
+    if (v.length > 9) return v.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    if (v.length > 6) return v.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+    if (v.length > 3) return v.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+    return v;
+  }
+  function maskCEP(v) {
+    v = onlyDigits(v).slice(0, 8);
+    if (v.length > 5) return v.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+    return v;
+  }
+  function maskPhone(v) {
+    v = onlyDigits(v).slice(0, 11);
+    if (v.length > 10) return v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    if (v.length > 6) return v.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+    if (v.length > 2) return v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    return v;
+  }
+
+  // ===== CRO helpers =====
+  function croValido(s) {
+    if (!s) return false;
+    const m = String(s).trim().toUpperCase().match(/^(\d{1,10})-([A-Z]{1,3})-([A-Z]{2})$/);
+    return !!m;
+  }
+  function parseCRO(s) {
+    const m = String(s).trim().toUpperCase().match(/^(\d{1,10})-([A-Z]{1,3})-([A-Z]{2})$/);
+    if (!m) return null;
+    return { numero: m[1], categoria: m[2], uf: m[3], cru: `${m[1]}-${m[2]}-${m[3]}` };
+  }
+
+  // ===== Refs =====
+  const formCadastro = document.getElementById('cadastroForm');
+  const formError = document.getElementById('formError');
+  const cpf = document.getElementById('cpf');
+  const cep = document.getElementById('cep');
+  const tel = document.getElementById('telefone');
+  const senha = document.getElementById('senha');
+  const confirma = document.getElementById('confirmaSenha');
+  const universidade = document.getElementById('universidade');
+  const uniOutroWrap = document.getElementById('uniOutroWrap');
+  const uniOutro = document.getElementById('universidade_outro');
+  const numeracaoCroInput = document.getElementById('numeracaoCro');
+
+  // ===== Indicação (ref) =====
+  const qs = new URLSearchParams(location.search);
+  const safe = (s) => String(s || "").trim().slice(0, 64);
+  const urlRef = safe(qs.get("ref"));
+  const savedRef = localStorage.getItem("ref_code");
+  const refCode = urlRef || savedRef || "";
+
+  function classificarRef(code) {
+    if (!code) return { type: "none", vendedorId: null, code: "" };
+    const m = String(code).toLowerCase().match(/^v([1-4])$/);
+    if (m) return { type: "vendedor", vendedorId: `v${m[1]}`, code };
+    return { type: "cliente", vendedorId: null, code };
+  }
+  const refInfo = classificarRef(refCode);
+
+  if (urlRef) {
+    localStorage.setItem("ref_code", urlRef);
+    localStorage.setItem("ref_source", location.href);
+  }
+  const statusEl = document.getElementById("formError");
+  if (refInfo.type === "vendedor") {
+    statusEl.hidden = false;
+    const vendedorNome = () => {
+      if (refInfo.vendedorId === "v1") return "pelo Consultor Comercial: Dayvison";
+      if (refInfo.vendedorId === "v2") return "pela Consultora Comercial: Elaine";
+      if (refInfo.vendedorId === "v3") return "pela Consultora Comercial: Erika";
+      if (refInfo.vendedorId === "v4") return "pela Consultora Comercial: Suelen";
+      return "";
+    };
+    statusEl.textContent = `Indicado ${vendedorNome()}`;
+  } else if (refInfo.type === "cliente") {
+    statusEl.hidden = false;
+    statusEl.textContent = `Indicação: cliente (código ${refInfo.code})`;
+  }
+
+  if (refInfo.code) {
+    document.querySelectorAll('a[href]').forEach(a => {
+      try {
+        const u = new URL(a.getAttribute('href'), location.href);
+        if (u.origin === location.origin && !u.searchParams.get('ref')) {
+          u.searchParams.set('ref', refInfo.code);
+          a.setAttribute('href', u.pathname + u.search + u.hash);
+        }
+      } catch (_) { }
+    });
+  }
+
+  (function injectRefHidden() {
+    const addHidden = (name, value) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value ?? "";
+      formCadastro.appendChild(input);
+    };
+    addHidden('ref_code', refInfo.code);
+    addHidden('ref_type', refInfo.type);
+    addHidden('vendedor_id', refInfo.vendedorId || "");
+  })();
+
+  // Máscaras
+  cpf.addEventListener('input', () => cpf.value = maskCPF(cpf.value));
+  cep.addEventListener('input', () => cep.value = maskCEP(cep.value));
+  tel.addEventListener('input', () => tel.value = maskPhone(tel.value));
+
+  // Campo "Outro" e CRO
+  function atualizaOutro() {
+    const outroSelecionado = universidade.value === 'Outro';
+    uniOutroWrap.style.display = outroSelecionado ? 'block' : 'none';
+    uniOutro.required = outroSelecionado;
+    if (outroSelecionado) uniOutro.focus();
+  }
+
+  // ===== Substituta da sua atualizaCRO (com required dinâmico e reset do período) =====
+  function atualizaCRO() {
+    const croSelecionado = universidade.value === 'CRO';
+    const croFieldWrap = document.getElementById('cro');           // <div id="cro" class="field">
+    const periodoEl = document.getElementById('periodo');
+    const periodoWrap = periodoEl.parentElement;
+
+    // mostrar/ocultar campos
+    croFieldWrap.style.display = croSelecionado ? 'block' : 'none';
+    periodoWrap.style.display = croSelecionado ? 'none' : 'block';
+
+    // required dinâmico
+    const croInput = document.getElementById('numeracaoCro');
+    croInput.required = croSelecionado;
+    periodoEl.required = !croSelecionado;
+
+    // se virou CRO, zera período pra não vazar valor antigo
+    if (croSelecionado) periodoEl.value = '';
+  }
+
+  universidade.addEventListener('change', () => { atualizaOutro(); atualizaCRO(); });
+  document.addEventListener('DOMContentLoaded', () => { atualizaOutro(); atualizaCRO(); });
+
+  // CPF válido
+  function cpfValido(num) {
+    const c = onlyDigits(num);
+    if (c.length !== 11 || /^([0-9])\1+$/.test(c)) return false;
+    let s = 0; for (let i = 0; i < 9; i++) s += parseInt(c[i]) * (10 - i); let d1 = 11 - (s % 11); d1 = d1 > 9 ? 0 : d1;
+    s = 0; for (let i = 0; i < 10; i++) s += parseInt(c[i]) * (11 - i); let d2 = 11 - (s % 11); d2 = d2 > 9 ? 0 : d2;
+    return d1 == c[9] && d2 == c[10];
+  }
+
+  function showError(msg, field) {
+    formError.textContent = msg;
+    formError.hidden = !msg;
+    if (msg) {
+      formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (field && field.focus) setTimeout(() => field.focus(), 150);
+    }
+  }
+
+  // ====== CONFIG DA API (Tiny) ======
+  const BASE_URL = 'https://us-central1-cadastros-shelf-dental-med.cloudfunctions.net/api';
+  const CHAVE = 'teste123';
+
+  async function chamarAPI(path, payload) {
+    const resp = await fetch(`${BASE_URL}${path}`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json', 'x-chave-acesso': CHAVE },
+      body: JSON.stringify(payload),
+    });
+    let data = null;
+    try { data = await resp.json(); } catch (e) { /* ignore */ }
+    if (!resp.ok) {
+      const msg = (data && (data.error || data.message)) || `Erro HTTP ${resp.status}`;
+      throw new Error(msg);
+    }
+    return data;
+  }
+
+  // ====== CONFIG DA API (RTDB) ======
+  const BASE_URL_DB = 'https://us-central1-cadastros-shelf-dental-med.cloudfunctions.net/rtdb';
+  async function chamarDB(path, payload) {
+    const resp = await fetch(`${BASE_URL_DB}${path}`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json', 'x-chave-acesso': CHAVE },
+      body: JSON.stringify(payload),
+    });
+    let data = null;
+    try { data = await resp.json(); } catch (_) { }
+    if (!resp.ok) {
+      const msg = (data && (data.error || data.message)) || `Erro HTTP ${resp.status}`;
+      throw new Error(msg);
+    }
+    return data;
+  }
+
+  // ===== Envio/validação =====
+  formCadastro.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    showError('');
+
+    // refs adicionais para validação
+    const nomeEl = document.getElementById('nome');
+    const ruaEl = document.getElementById('rua');
+    const numeroEl = document.getElementById('numero');
+    const bairroEl = document.getElementById('bairro');
+    const cidadeEl = document.getElementById('cidade');
+    const estadoEl = document.getElementById('estado');
+    const emailEl = document.getElementById('email');
+    const periodoEl = document.getElementById('periodo');
+    const croInput = document.getElementById('numeracaoCro');
+
+    const isCRO = universidade.value === 'CRO';
+
+    // ===== Validações locais (bloqueiam envio) =====
+    if (senha.value !== confirma.value) { return showError('As senhas não conferem.', confirma); }
+    if (!cpfValido(cpf.value)) { return showError('CPF inválido. Verifique e tente novamente.', cpf); }
+    if (onlyDigits(cep.value).length !== 8) { return showError('CEP inválido. Use 8 dígitos.', cep); }
+    const dTel = onlyDigits(tel.value);
+    if (dTel.length < 10 || dTel.length > 11) { return showError('Telefone inválido.', tel); }
+    if (universidade.value === 'Outro' && !uniOutro.value.trim()) {
+      return showError('Informe o nome da universidade.', uniOutro);
+    }
+
+    // Campos básicos obrigatórios (sempre)
+    const obrig = [
+      [nomeEl, 'Informe o nome.'],
+      [ruaEl, 'Informe a rua.'],
+      [numeroEl, 'Informe o número.'],
+      [bairroEl, 'Informe o bairro.'],
+      [cidadeEl, 'Informe a cidade.'],
+      [estadoEl, 'Selecione o estado (UF).'],
+      [emailEl, 'Informe o e-mail.'],
+      [universidade, 'Selecione a universidade/CRO.'],
+      [senha, 'Crie uma senha.'],
+    ];
+    for (const [el, msg] of obrig) {
+      if (!String(el.value || '').trim()) return showError(msg, el);
+    }
+
+    // Quando NÃO for CRO, período é obrigatório
+    if (!isCRO && !String(periodoEl.value || '').trim()) {
+      return showError('Selecione o período.', periodoEl);
+    }
+
+    // Quando for CRO, CRO é obrigatório e com formato válido
+    let croData = null;
+    if (isCRO) {
+      const croStr = (croInput.value || '').trim();
+      if (!croStr) return showError('Informe seu CRO (ex.: 12345-CD-UF).', croInput);
+      if (!croValido(croStr)) return showError('CRO inválido. Use o formato: 12345-CD-UF', croInput);
+      croData = parseCRO(croStr);
+    }
+
+    // ===== Monta payloads =====
+    const fd = new FormData(formCadastro);
+    const dataForm = Object.fromEntries(fd.entries());
+
+    const universidadeFinal =
+      dataForm.universidade === 'Outro' ? (dataForm.universidade_outro || 'Outro') : dataForm.universidade;
+    const periodoFinal = (universidadeFinal === 'CRO') ? "" : dataForm.periodo;
+
+    // Payload para o Tiny (sem CRO e sem período quando CRO)
+    const payloadBase = {
+      cpfCnpj: onlyDigits(dataForm.cpf),
+      nome: dataForm.nome,
+      endereco: dataForm.rua,
+      numero: dataForm.numero,
+      bairro: dataForm.bairro,
+      cep: onlyDigits(dataForm.cep),
+      fone: onlyDigits(dataForm.telefone),
+      email: dataForm.email,
+      universidade: universidadeFinal,
+      periodo: periodoFinal,
+      // Indicação (NÃO vai para o Tiny por enquanto, mas manter no objeto não atrapalha — vamos limpar vazios)
+      ref_code: refInfo.code,
+      ref_type: refInfo.type,
+      vendedor_id: refInfo.vendedorId,
+    };
+
+    // Payload para o RTDB (/salva) — inclui senha, cidade, estado e CRO estruturado
+    const payloadDB = {
+      cpfCnpj: onlyDigits(dataForm.cpf),
+      nome: dataForm.nome,
+      endereco: dataForm.rua,
+      numero: dataForm.numero,
+      bairro: dataForm.bairro,
+      cep: onlyDigits(dataForm.cep),
+      fone: onlyDigits(dataForm.telefone),
+      email: dataForm.email,
+      universidade: universidadeFinal,
+      periodo: periodoFinal,
+      senha: dataForm.senha,
+      cidade: dataForm.cidade || "",
+      estado: dataForm.estado || "",
+      cro: croData, // salva CRO estruturado
+
+      // Indicação
+      ref_code: refInfo.code,
+      ref_type: refInfo.type,
+      vendedor_id: refInfo.vendedorId,
+    };
+
+    // Desabilita botão enquanto envia
+    const submitBtn = formCadastro.querySelector('button[type="submit"]');
+    const oldText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    try {
+      // 1) Salva no RTDB primeiro (só chega aqui se TODAS as validações passaram)
+      await chamarDB('/salva', payloadDB);
+
+      // 2) Ajustes para o Tiny
+      if (payloadBase.universidade && payloadBase.universidade.toUpperCase() === 'CRO') {
+        delete payloadBase.periodo; // Tiny não precisa de período quando for CRO
+      }
+      // Remove chaves vazias
+      for (const k of Object.keys(payloadBase)) {
+        if (payloadBase[k] === "" || payloadBase[k] == null) delete payloadBase[k];
+      }
+
+      // 3) Tiny: pesquisa → alterar/novo
+      await chamarAPI('/pesquisa', { cpf: payloadBase.cpfCnpj })
+        .then(async (r) => {
+          const encontrado =
+            r && (r.retorno?.status === 'OK') &&
+            (Array.isArray(r.retorno?.contatos) || r.retorno?.contatos);
+
+          if (encontrado) {
+            const respAlterar = await chamarAPI('/alterar', payloadBase);
+            alert('Cadastro atualizado com sucesso!');
+            console.log('ALTERAR → resposta:', respAlterar);
+          } else {
+            const respNovo = await chamarAPI('/novo', payloadBase);
+            alert('Cadastro criado com sucesso!');
+            console.log('NOVO → resposta:', respNovo);
+          }
+        })
+        .catch(async (e) => {
+          console.warn('Falha na pesquisa, tentando criar novo:', e.message);
+          const respNovo = await chamarAPI('/novo', payloadBase);
+          alert('Cadastro criado com sucesso!');
+          console.log('NOVO → resposta:', respNovo);
+        });
+
+      // 4) Reset UI
+      formCadastro.reset();
+      atualizaOutro();
+      atualizaCRO();
+    } catch (err) {
+      console.error(err);
+      showError(err.message || 'Falha ao enviar os dados. Tente novamente.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldText;
+    }
+  });
+
+  // Foco inicial
+  window.addEventListener('load', () => document.getElementById('nome').focus());
+</script>
+
+
+
+</body>
+
+</html>

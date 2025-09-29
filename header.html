@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shelf Dental Med</title>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="shortcut icon" href="img/logo-nav.png" />
+</head>
+
+<body>
+    <div>
+        <header class="header-mobile-universal">
+            <div class="top-banner-mobile-universal">
+                <a href="campanhas.html"><img src="img/banner-header1(mobile).gif" alt=""></a>
+            </div>
+            <div class="header-content-mobile-universal">
+                <!-- Botão de menu visível no mobile -->
+                <button class="btn-menu-mobile-universal" id="btnMenuMobile-universal" aria-label="Abrir menu">
+                    ☰
+                </button>
+                <div class="search-bar-universal" role="search">
+                    <input type="text" placeholder="Pesquisar Listas Acadêmicas..." aria-label="Pesquisar" />
+                    <button aria-label="Buscar">
+                        <svg class="user-icon-mobile-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-area-mobile-universal">
+                    <a class="user-link-mobile-universal" href="carrinho.html">
+                        <svg class="user-icon-mobile-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.16 14l-.94-2H19V7H6.42l-.94-2H2v2h2l3.6 7.59-1.35 2.44C5.16 17.37 5 17.91 5 18.5 5 19.33 5.67 20 6.5 20h12v-2h-11l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L21 9.24l-1.66-.88L17.1 14H7.16z" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- Menu lateral mobile -->
+                <div id="menuMobile-universal" class="menu-mobile-universal" hidden>
+                    <button class="close-menu-universal" id="closeMenuMobile-universal">×</button>
+
+                    <div class="menu-mobile-content-universal">
+                        <p class="title-universal">Acesse sua conta e aproveite benefícios exclusivos!</p>
+                        <!-- Área dinâmica: será renderizada conforme login/sessão -->
+                        <div id="mobileAccountArea" class="menu-buttons-universal"></div>
+
+
+                        <div class="categorias-universal">
+                            <h4>Categorias</h4>
+                            <ul>
+                                <li><a href="index.html">Página Inicial</a></li>
+                                <li><a href="listas.html">Listas Acadêmicas</a></li>
+                                <li><a href="promocoes.html">Promoções</a></li>
+                                <li><a href="campanhas.html">Campanhas</a></li>
+                                <li><a href="contatos.html">Fale Conosco</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="menuOverlay-universal" class="menu-overlay-universal" hidden></div>
+            </div>
+        </header>
+
+        <header class="header-topo-universal">
+            <div class="top-banner-universal"><a href="campanhas.html"><img src="img/banner-header.gif" alt=""></a></div>
+
+            <div class="header-content-universal">
+                <div class="logo-universal"><a href="index.html"><img src="img/logo.png" alt="Shelf Dental Med" /></a></div>
+
+                <div class="search-bar-universal" role="search">
+                    <input type="text" placeholder="Pesquisar Listas Acadêmicas..." aria-label="Pesquisar" />
+                    <button aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="user-area-universal">
+                    <!-- Botão + popovers -->
+                    <div class="user-login-universal">
+                        <button id="btnLogin-universal" class="user-link-universal" type="button" aria-expanded="false"
+                            aria-controls="loginPopover accountPopover">
+                            <svg class="user-icon-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4a3 3 0 110 6 3 3 0 010-6zm0 14.2c-2.5 0-4.8-1.1-6.4-2.9.1-2.1 4.3-3.2 6.4-3.2s6.3 1.1 6.4 3.2c-1.6 1.8-3.9 2.9-6.4 2.9z" />
+                            </svg>
+                            <span>Olá, visitante<br><strong>Faça seu login</strong></span>
+                        </button>
+
+                        <!-- Popover: Login -->
+                        <div id="loginPopover-universal" class="popover-universal" role="dialog-universal"
+                            aria-labelledby="loginTitle-universal" hidden>
+                            <div class="login-header-universal">
+                                <h2 id="loginTitle-universal">Faça seu login</h2>
+                                <button class="btn-close-universal" id="btnCloseLogin-universal"
+                                    aria-label="Fechar">×</button>
+                            </div>
+                            <p class="muted-universal">E aproveite ofertas exclusivas para você!</p>
+
+                            <form id="loginForm-universal" class="login-form-universal" novalidate>
+                                <div class="field-universal">
+                                    <label for="email-universal">E-mail ou CPF/CNPJ</label>
+                                    <input id="email-universal" name="email" type="text" inputmode="email"
+                                        autocomplete="username" required
+                                        placeholder="seu@email.com ou 000.000.000-00" />
+                                </div>
+                                <div class="field-universal">
+                                    <label for="senha">Senha</label>
+                                    <input id="senha-universal" name="senha" type="password"
+                                        autocomplete="current-password" required placeholder="••••••••" />
+                                </div>
+                                <div class="row-universal">
+                                    <label class="muted-universal"><input type="checkbox" id="togglePass-universal" />
+                                        Mostrar senha</label>
+                                    <a class="muted" href="/esqueci-minha-senha">Esqueceu a sua senha?</a>
+                                </div>
+                                <button class="btn-primary-universal" type="submit">Entrar</button>
+                                <div id="loginError-universal" class="error-universal" hidden></div>
+
+                                <div class="alt-universal">ou</div>
+                                <div class="btn-cadastrar-universal"><a class="btn-cadastrar-universal"
+                                        href="/cadastro">Cadastre-se aqui</a>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <!-- Popover: Menu da conta -->
+                        <div id="accountPopover-universal" class="popover-universal" role="menu" hidden>
+                            <ul class="account-menu-universal">
+                                <li><a href="/minha-conta.html">Sua conta</a></li>
+                                <li><a href="/pedidos.html">Pedidos</a></li>
+                                <li><button type="button" id="btnLogout-universal" class="logout-universal">Sair da
+                                        conta</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a class="user-link-universal" href="#pontos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M17.94 6.06a1.5 1.5 0 0 1 0 2.12l-9.78 9.78a1.5 1.5 0 1 1-2.12-2.12l9.78-9.78a1.5 1.5 0 0 1 2.12 0zM7.5 5a2.5 2.5 0 1 0 0 5A2.5 2.5 0 0 0 7.5 5zm9 9a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5z" />
+                        </svg>
+
+                        <span>Shelf Points<br>Seu Score</span>
+                    </a>
+
+                    <a class="user-link-universal" href="carrinho.html">
+                        <svg class="user-icon-universal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.16 14l-.94-2H19V7H6.42l-.94-2H2v2h2l3.6 7.59-1.35 2.44C5.16 17.37 5 17.91 5 18.5 5 19.33 5.67 20 6.5 20h12v-2h-11l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L21 9.24l-1.66-.88L17.1 14H7.16z" />
+                        </svg>
+                        <span>Carrinho</span>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="menu-navegacao-universal">
+                <ul>
+                    <li><a href="index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-universal" viewBox="0 0 24 24"
+                                fill="currentColor" width="20" height="20">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                            </svg>
+
+                            Página Inicial</a>
+                    </li>
+                    <li><a href="listas.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M4 3h16c.55 0 1 .45 1 1v16c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1zm1 2v14h14V5H5zm2 3h10v2H7zm0 3h10v2H7zm0 3h10v2H7zm0 3h10v2H7z" />
+                            </svg>
+
+
+                            Listas Acadêmicas</a>
+                    </li>
+                    <li><a href="promocoes.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <text x="0" y="20" font-size="24" font-family="Arial, sans-serif"
+                                    font-weight="bold">$</text>
+                            </svg>
+
+
+
+                            Promoções</a></li>
+                    <li><a href="campanhas.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M19 6h-2V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H5c-1.1 0-1.99.9-1.99 2L3 17c0 1.1.89 2 1.99 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7 0h-4V4h4v2zm5 9H5V8h12v7z" />
+                            </svg>
+
+                            Campanhas</a></li>
+                    <li><a href="contatos.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 1C6.48 1 2 5.48 2 11v5c0 1.66 1.34 3 3 3h1v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-1v8h1c1.66 0 3-1.34 3-3v-5c0-5.52-4.48-10-10-10z" />
+                            </svg>
+
+                            Atendimento ao Cliente</a></li>
+                </ul>
+            </nav>
+        </header>
+        <script>
+            // ===== CONFIGURE AQUI =====
+            // Opção A: usando rewrite do Firebase Hosting
+            // const API_BASE = '/api';
+
+            // Opção B: chamando a Cloud Function diretamente (troque pelo seu endpoint)
+            const API_BASE = 'https://us-central1-cadastros-shelf-dental-med.cloudfunctions.net/rtdb';
+
+            // Se sua origem já está na whitelist do servidor (ex.: gruposhelf.com e localhost:5500),
+            // este header é opcional. Se precisar, mantenha:
+            const CHAVE_ACESSO = 'teste123';
+
+            // ===== Helpers =====
+            function onlyDigitsUniversal(s) { return String(s || '').replace(/\D+/g, ''); }
+
+            async function chamarDB(path, payload) {
+                const resp = await fetch(`${API_BASE}${path}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-chave-acesso': CHAVE_ACESSO // remova se sua origem já estiver permitida
+                    },
+                    body: JSON.stringify(payload || {})
+                });
+                let data = null;
+                try { data = await resp.json(); } catch { }
+                if (!resp.ok) {
+                    const msg = (data && (data.error || data.message)) || `HTTP ${resp.status}`;
+                    throw new Error(msg);
+                }
+                return data;
+            }
+
+            // ===== Config do front =====
+            const ACCOUNT_URL = '/minha-conta';
+            const ORDERS_URL = '/pedidos';
+            const SESSION_KEY = 'sdm_user';
+
+            // Elos
+            const btnLogin = document.getElementById('btnLogin-universal');
+            const loginPop = document.getElementById('loginPopover-universal');
+            const accPop = document.getElementById('accountPopover-universal');
+            const btnClose = document.getElementById('btnCloseLogin-universal');
+            const form = document.getElementById('loginForm-universal');
+            const errorBox = document.getElementById('loginError-universal');
+
+            // Sessão
+            const getUser = () => { try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch { return null; } };
+            const setUser = (u) => localStorage.setItem(SESSION_KEY, JSON.stringify(u));
+            const clearUser = () => localStorage.removeItem(SESSION_KEY);
+
+            // UI States
+            function firstName(fullName) {
+                return String(fullName || '')
+                    .trim()
+                    .split(/\s+/)[0] || 'Usuário';
+            }
+
+            function setLoggedInUI(user) {
+                btnLogin.querySelector('span').innerHTML =
+                    `Olá, <strong>${firstName(user.nome)}</strong><br>Minha conta`;
+                loginPop.hidden = true;
+                accPop.hidden = true;
+            }
+            function setLoggedOutUI() {
+                btnLogin.querySelector('span').innerHTML = `Olá, visitante<br><strong>Faça seu login</strong>`;
+                loginPop.hidden = true; accPop.hidden = true;
+            }
+            function renderMobileMenuBySession() {
+                const area = document.getElementById('mobileAccountArea');
+                if (!area) return;
+
+                const user = getUser();
+                if (user) {
+                    // Usuário logado: mostra "Sua conta / Pedidos / Sair"
+                    area.innerHTML = `
+        <div class="account-mobile-universal">
+          <p class="muted-universal">Olá, <strong>${firstName(user.nome)}</strong></p>
+          <ul class="account-menu-universal">
+            <li><a href="/minha-conta.html" id="mobileAccountLink">Sua conta</a></li>
+            <li><a href="/pedidos.html" id="mobileOrdersLink">Pedidos</a></li>
+            <li><button type="button" id="btnLogoutMobile-universal" class="logout-universal">Sair da conta</button></li>
+          </ul>
+        </div>
+      `;
+
+                    // Ações dos itens
+                    const logoutBtn = document.getElementById('btnLogoutMobile-universal');
+                    logoutBtn?.addEventListener('click', () => {
+                        clearUser();
+                        setLoggedOutUI();
+                        renderMobileMenuBySession();
+                        // fecha o menu lateral se estiver aberto
+                        try { closeMenu(); } catch (_) { }
+                    });
+
+                    const accountLink = document.getElementById('mobileAccountLink');
+                    const ordersLink = document.getElementById('mobileOrdersLink');
+
+                    accountLink?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = ACCOUNT_URL;
+                        try { closeMenu(); } catch (_) { }
+                    });
+                    ordersLink?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = ORDERS_URL;
+                        try { closeMenu(); } catch (_) { }
+                    });
+
+                } else {
+                    // Visitante: mostra "Entrar / Criar conta"
+                    area.innerHTML = `
+        <div class="menu-buttons-universal">
+          <button class="btn-primary-universal"><a href="login-mobile.html">Entrar</a></button>
+          <button class="btn-secondary-universal"><a href="cadastro.html">Criar conta</a></button>
+        </div>
+      `;
+                }
+            }
+            // Abertura/fechamento
+            function openLogin() { loginPop.hidden = false; accPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'true'); setTimeout(() => document.getElementById('email-universal').focus(), 0); }
+            function openAccount() { accPop.hidden = false; loginPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'true'); }
+            function closeAll() { loginPop.hidden = true; accPop.hidden = true; btnLogin.setAttribute('aria-expanded', 'false'); }
+
+            // Clique do botão: decide qual abrir
+            btnLogin.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const user = getUser();
+                if (user) { accPop.hidden ? openAccount() : closeAll(); }
+                else { loginPop.hidden ? openLogin() : closeAll(); }
+            });
+            btnClose.addEventListener('click', closeAll);
+
+            // Click fora / ESC
+            document.addEventListener('click', (e) => {
+                if ((!loginPop.hidden || !accPop.hidden) &&
+                    !loginPop.contains(e.target) && !accPop.contains(e.target) &&
+                    e.target !== btnLogin && !btnLogin.contains(e.target)) {
+                    closeAll();
+                }
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+            // Mostrar/ocultar senha
+            document.addEventListener('change', (e) => {
+                if (e.target.id === 'togglePass-universal') {
+                    const input = document.getElementById('senha-universal');
+                    input.type = e.target.checked ? 'text' : 'password';
+                }
+            });
+
+            // Submit do login
+            form.addEventListener('submit', async (ev) => {
+                ev.preventDefault();
+                const rawId = form.email.value.trim(); // no momento, exigimos CPF
+                const senha = form.senha.value;
+
+                const cpf = onlyDigitsUniversal(rawId);
+                if (cpf.length !== 11) { showError('Use seu CPF (11 dígitos) para entrar.'); return; }
+                if (!senha) { showError('Informe a senha.'); return; }
+
+                try {
+                    const resp = await chamarDB('/entrar', { cpf, senha });
+                    const user = { nome: resp.nome || 'Usuário', cpf: resp.cpf };
+                    setUser(user);
+                    setLoggedInUI(user);
+
+                    // 🔹 ATUALIZA O MENU LATERAL DO MOBILE APÓS LOGIN
+                    renderMobileMenuBySession();
+
+                    closeAll();
+                    errorBox.hidden = true;
+                } catch (err) {
+                    showError(err.message || 'Credenciais inválidas.');
+                }
+            });
+
+            // Logout
+            document.getElementById('btnLogout-universal').addEventListener('click', () => {
+                clearUser();
+                setLoggedOutUI();
+                // 🔹 ATUALIZA O MENU LATERAL DO MOBILE APÓS LOGOUT
+                renderMobileMenuBySession();
+                closeAll();
+            });
+
+            function showError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
+
+            // Init
+            (function init() {
+                const u = getUser();
+                if (u) setLoggedInUI(u); else setLoggedOutUI();
+
+                // 🔹 ATUALIZA O MENU LATERAL DO MOBILE CONFORME A SESSÃO
+                renderMobileMenuBySession();
+
+                // Navegação rápida pelos itens do menu
+                accPop.addEventListener('click', (e) => {
+                    const a = e.target.closest('a');
+                    if (!a) return;
+                    closeAll();
+                    if (a.getAttribute('href') === '/minha-conta') window.location.href = ACCOUNT_URL;
+                    if (a.getAttribute('href') === '/pedidos') window.location.href = ORDERS_URL;
+                });
+            })();
+        </script>
+        <script>
+            // Mobile menu toggle
+            const btnMenuMobile = document.getElementById('btnMenuMobile-universal');
+            const menuMobile = document.getElementById('menuMobile-universal');
+            const closeMenuMobile = document.getElementById('closeMenuMobile-universal');
+            const menuOverlay = document.getElementById('menuOverlay-universal');
+
+            btnMenuMobile.addEventListener('click', () => {
+                menuMobile.removeAttribute('hidden');
+                menuMobile.setAttribute('aria-hidden', 'false');
+                menuOverlay.removeAttribute('hidden');
+            });
+
+            closeMenuMobile.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+
+            function closeMenu() {
+                menuMobile.setAttribute('aria-hidden', 'true');
+                menuOverlay.setAttribute('hidden', true);
+                setTimeout(() => {
+                    menuMobile.setAttribute('hidden', true);
+                }, 300); // aguarda animação
+            }
+        </script>
+    </div>
+</body>
+
+</html>

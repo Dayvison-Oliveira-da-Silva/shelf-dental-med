@@ -1,0 +1,627 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body  {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f9f9f9;
+    color: #2b2b2b
+}
+
+@media (min-width: 640px) {
+
+
+
+    /* ===== Topo ===== */
+     .top-banner-universal img {
+        width: 100%;
+        max-height: 60px;
+        object-fit: cover;
+        display: block;
+    }
+
+     .header-content-universal {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 100px;
+        flex-wrap: wrap
+    }
+
+     .logo-universal img {
+        height: 45px
+    }
+
+    /* Busca */
+     .search-bar-universal {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        margin: 10px 30px;
+        background: #f8f8f8;
+        border-radius: 30px;
+        border: 2px solid #d2d2d2;
+        overflow: hidden;
+        max-width: 600px
+    }
+
+     .search-bar-universal input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 0;
+        outline: 0;
+        background: #f8f8f8
+    }
+
+     .search-bar-universal button {
+        background: #f8f8f8;
+        border: 0;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+     .search-bar-universal svg {
+        width: 20px;
+        height: 20px;
+        fill: #09f
+    }
+
+    /* Área do usuário */
+     .user-area-universal {
+        display: flex;
+        gap: 20px;
+        align-items: center
+    }
+
+     .user-area-universal .user-link-universal {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c7679;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13.333px;
+        transition: opacity .25s
+    }
+
+     .user-area-universal .user-link-universal span {
+        display: block;
+        line-height: 1.2;
+        text-align: left
+    }
+
+     .user-area-universal .user-icon-universal {
+        width: 30px;
+        height: 30px;
+        fill: #d2d2d2;
+        border-radius: 50%
+    }
+
+     .user-area-universal .user-link-universal:hover {
+        opacity: .85
+    }
+
+    /* Remover borda/fundo padrão do <button> */
+     .user-area-universal button.user-link-universal {
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer
+    }
+
+     .user-area-universal button.user-link-universal:focus-visible {
+        outline: 2px solid #09f;
+        outline-offset: 2px;
+        border-radius: 8px
+    }
+
+    /* Menu de navegação */
+     .menu-navegacao-universal {
+        background-color: #09f;
+        padding: 12px 30px;
+        width: 100%;
+    }
+
+     .menu-navegacao-universal ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+     .menu-navegacao-universal li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+     .menu-navegacao-universal li a:hover {
+        color: #09f;
+        background-color: #fff;
+        padding: 5px 30px;
+        border-radius: 8px;
+    }
+
+     .menu-navegacao-universal li a svg {
+        width: 20px;
+        height: 20px;
+        fill: #d2d2d2;
+        display: none;
+    }
+
+     .menu-navegacao-universal li a:hover svg {
+        display: inline;
+        fill: #09f;
+    }
+
+    /* ===== Popovers (Login e Conta) ===== */
+     .user-login-universal {
+        position: relative
+    }
+
+    /* âncora */
+     .popover-universal {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: min(92vw, 420px);
+        background: #fff;
+        border-radius: 16px;
+        padding: 22px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+        z-index: 1000
+    }
+
+     .popover-universal[hidden] {
+        display: none
+    }
+
+     .popover-universal::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        right: 20px;
+        border: 8px solid transparent;
+        border-bottom-color: #fff
+    }
+
+    /* Form de login */
+     .login-header-universal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px
+    }
+
+     .login-header-universal h2 {
+        font-size: 1.1rem
+    }
+
+     .btn-close-universal {
+        border: 0;
+        background: transparent;
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 2px 6px
+    }
+
+     .login-form-universal {
+        display: grid;
+        gap: 12px;
+        margin-top: 6px
+    }
+
+     .field-universal {
+        display: grid;
+        gap: 6px
+    }
+
+     .field-universal label {
+        font-size: .9rem;
+        color: #4a4a4a
+    }
+
+     .field-universal input {
+        padding: 12px;
+        border: 1.5px solid #d7d7d7;
+        border-radius: 10px;
+        outline: 0
+    }
+
+     .field-universal input:focus {
+        border-color: #09f;
+        box-shadow: 0 0 0 3px rgba(0, 153, 255, .15)
+    }
+
+     .row-universal {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px
+    }
+
+     .muted-universal {
+        font-size: .9rem;
+        color: #6c6c6c
+    }
+
+     .btn-primary-universal {
+        background: #09f;
+        color: #fff;
+        border: 0;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer
+    }
+
+     .btn-primary-universal:hover {
+        filter: brightness(1.05)
+    }
+
+     .alt-universal {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+        color: #6c6c6c;
+        font-size: .9rem
+    }
+
+     .alt-universal::before,
+     .alt-universal::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e5e5e5
+    }
+
+     .btn-cadastrar-universal {
+        display: inline-flex;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        color: #09f
+    }
+
+     .btn-cadastrar-universal:hover {
+        text-decoration: underline
+    }
+
+     .error-universal {
+        color: #b00020;
+        font-size: .9rem
+    }
+
+    /* Menu da conta */
+     .account-menu-universal {
+        list-style: none;
+        display: grid;
+        gap: 6px;
+        min-width: 220px
+    }
+
+     .account-menu-universal a,
+     .account-menu-universal button {
+        text-align: left;
+        background: transparent;
+        border: 0;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font: inherit;
+        color: #2b2b2b;
+        text-decoration: none;
+        cursor: pointer
+    }
+
+     .account-menu-universal a:hover,
+     .account-menu-universal button:hover {
+        background: #f5f7fa
+    }
+
+     .account-menu-universal .logout {
+        color: #d32f2f;
+        font-weight: 700
+    }
+
+     .account-menu-universal .logout:hover {
+        background: #fde7e7
+    }
+
+    /* Responsivo */
+    /* Esconde o botão no desktop */
+     .btn-menu-universal {
+        display: none;
+        font-size: 26px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+     .header-mobile-universal {
+        display: none;
+    }
+}
+
+/* Só mostra o botão no celular */
+@media (max-width: 640px) {
+     .header-topo-universal {
+        display: none;
+    }
+
+     .top-banner-mobile-universal img {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+     .top-banner-mobile-universal img {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Barra do topo no mobile: fica colada no topo e com sombra leve */
+     .header-content-mobile-universal {
+        position: sticky;
+        /* toda a barra fica sticky, não só o botão */
+        top: 0;
+        z-index: 100;
+        background: #fff;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    }
+
+    /* Botão de menu: no fluxo, sem sobrepor banner */
+     .btn-menu-mobile-universal {
+        position: static;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        /* área de toque confortável */
+        height: 40px;
+        font-size: 24px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+    }
+
+    /* Barra de busca no mobile (mesmo look do desktop) */
+     .search-bar-universal {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        background: #f8f8f8;
+        border-radius: 30px;
+        border: 2px solid #d2d2d2;
+        overflow: hidden;
+        max-width: 600px
+    }
+
+     .search-bar-universal input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 0;
+        outline: 0;
+        background: #f8f8f8
+    }
+
+     .search-bar-universal button {
+        background: #f8f8f8;
+        border: 0;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    /* Feedback de foco como no desktop */
+     .search-bar-universal input:focus {
+        box-shadow: 0 0 0 3px rgba(0, 153, 255, .15);
+    }
+
+     .search-bar-universal .user-icon-mobile {
+        width: 15px;
+        height: 15px;
+        fill: #454545;
+        border-radius: 50%
+    }
+
+     .user-area-mobile-universal {
+        display: flex;
+        gap: 20px;
+        align-items: center
+    }
+
+     .user-area-mobile-universal .user-link-mobile-universal {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c7679;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13.333px;
+        transition: opacity .25s
+    }
+
+     .user-area-mobile-universal .user-icon-mobile-universal {
+        width: 30px;
+        height: 30px;
+        fill: #454545;
+        border-radius: 50%
+    }
+
+     .user-area-mobile-universal .user-link-mobile-universal:hover {
+        opacity: .85
+    }
+
+    /* Remover borda/fundo padrão do <button> */
+     .user-area-mobile-universal button.user-link-mobile-universal {
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer
+    }
+
+     .user-area-mobile-universal button.user-link-mobile-universal:focus-visible {
+        outline: 2px solid #09f;
+        outline-offset: 2px;
+        border-radius: 8px
+    }
+
+    /* Menu Lateral */
+     .menu-mobile-universal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100%;
+        background: white;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        z-index: 1200;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+     .menu-mobile-universal[aria-hidden="false"] {
+        transform: translateX(0);
+    }
+
+     .menu-overlay-universal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1100;
+    }
+
+    /* Fechar botão */
+     .close-menu-universal {
+        font-size: 28px;
+        background: none;
+        border: none;
+        float: right;
+        margin-top: -10px;
+    }
+
+    /* Conteúdo do menu */
+     .menu-mobile-content-universal .title {
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+     .menu-buttons-universal {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+     .menu-buttons-universal .btn-primary-universal,
+     .menu-buttons-universal .btn-secondary-universal {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        margin-top: 20px;
+    }
+
+     .menu-buttons-universal .btn-primary-universal {
+        background: #09f;
+        color: #fff;
+        width: 100%;
+    }
+
+     .menu-buttons-universal .btn-primary-universal a {
+        background: #09f;
+        color: #fff;
+        text-decoration: none;
+    }
+
+     .menu-buttons-universal .btn-secondary-universal {
+        background: #f0f0f0;
+        color: #333;
+    }
+
+     .menu-buttons-universal .btn-secondary-universal a {
+        background: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+    }
+    .account-mobile-universal{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .account-mobile-universal ul li{
+        list-style: none;   /* remove os pontos */
+        padding: 5px 0;         /* remove o recuo padrão */
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+    .account-mobile-universal a{
+        text-decoration: none;
+        color: #2b2b2b;    
+    }
+    .account-mobile-universal button{
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        color: #2b2b2b;
+    }
+
+     .categorias-universal h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+     .categorias-universal ul {
+        list-style: none;
+        padding: 0;
+    }
+
+     .categorias-universal li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+     .categorias-universal li a {
+        text-decoration: none;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        color: #2b2b2b
+    }
+
+}
